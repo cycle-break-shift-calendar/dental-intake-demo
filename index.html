@@ -1,135 +1,30 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#116466">
-  <title>Dental Intake Pilot</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#123f46"><title>Dr. Joseph LaValley | Digital Patient Intake</title><link rel="stylesheet" href="styles.css"><script src="script.js" defer></script></head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="#welcome" aria-label="Return to welcome">
-      <span class="brand-mark" aria-hidden="true">&#10022;</span>
-      <span><strong>Your Dental Office</strong><small>Paperless intake pilot</small></span>
-    </a>
-    <span class="demo-badge">DEMO</span>
-  </header>
-
-  <main>
-    <section id="welcome" class="screen active" aria-labelledby="welcome-title">
-      <div class="hero card">
-        <div class="tooth" aria-hidden="true">&#129463;</div>
-        <p class="eyebrow">Welcome to</p>
-        <h1 id="welcome-title">Your Dental Office</h1>
-        <p class="lead">Complete your check-in on your phone. Most questions take only a tap.</p>
-        <button id="startBtn" class="button primary wide" type="button">Start patient intake</button>
-        <button id="loadWelcomeBtn" class="button secondary wide" type="button">Use saved profile</button>
-        <div class="privacy-note">
-          <strong>This is a prototype.</strong> It sends nothing to a server. Information stays in this browser unless you print or save the generated packet. Do not use real patient information for this demo.
-        </div>
-      </div>
-    </section>
-
-    <section id="intake" class="screen" aria-labelledby="form-title">
-      <div class="progress-wrap" aria-label="Form progress"><div id="progressBar"></div></div>
-      <div class="section-heading">
-        <div><p class="eyebrow">Patient check-in</p><h1 id="form-title">Dental intake</h1></div>
-        <button id="loadProfileBtn" class="button text" type="button">Use saved profile</button>
-      </div>
-
-      <form id="intakeForm" novalidate>
-        <fieldset class="card form-section">
-          <legend>About you</legend>
-          <div class="grid two">
-            <label>First name<input name="firstName" autocomplete="given-name" required></label>
-            <label>Last name<input name="lastName" autocomplete="family-name" required></label>
-            <label>Date of birth<input name="dob" type="date" autocomplete="bday" required></label>
-            <label>Pronouns<select name="pronouns"><option value="">Select</option><option>she/her</option><option>he/him</option><option>they/them</option><option>Prefer not to say</option><option>Other</option></select></label>
-          </div>
-          <label>Street address<input name="address" autocomplete="street-address"></label>
-          <div class="grid three">
-            <label>City<input name="city" autocomplete="address-level2"></label>
-            <label>State<input name="state" maxlength="2" autocomplete="address-level1"></label>
-            <label>ZIP<input name="zip" inputmode="numeric" autocomplete="postal-code"></label>
-          </div>
-        </fieldset>
-
-        <fieldset class="card form-section">
-          <legend>Contact</legend>
-          <div class="grid two">
-            <label>Mobile phone<input name="phone" type="tel" inputmode="tel" autocomplete="tel" required></label>
-            <label>Email<input name="email" type="email" inputmode="email" autocomplete="email"></label>
-          </div>
-          <span class="field-label">Preferred contact</span>
-          <div class="choice-row"><label><input type="radio" name="contactMethod" value="Text" checked><span>Text</span></label><label><input type="radio" name="contactMethod" value="Call"><span>Call</span></label><label><input type="radio" name="contactMethod" value="Email"><span>Email</span></label></div>
-          <h2>Emergency contact</h2>
-          <div class="grid two"><label>Name<input name="emergencyName"></label><label>Relationship<input name="emergencyRelation"></label><label>Phone<input name="emergencyPhone" type="tel" inputmode="tel"></label></div>
-        </fieldset>
-
-        <fieldset class="card form-section">
-          <legend>Insurance</legend>
-          <span class="field-label">Do you have dental insurance?</span>
-          <div class="choice-row"><label><input type="radio" name="hasInsurance" value="Yes"><span>Yes</span></label><label><input type="radio" name="hasInsurance" value="No" checked><span>No</span></label></div>
-          <div id="insuranceFields" class="conditional grid two hidden"><label>Provider<input name="insuranceProvider"></label><label>Member ID<input name="memberId"></label><label>Policyholder<input name="policyholder"></label><label>Group number<input name="groupNumber"></label></div>
-        </fieldset>
-
-        <fieldset class="card form-section">
-          <legend>Medical history</legend>
-          <p class="hint">Tap all that apply.</p>
-          <div class="check-grid">
-            <label><input type="checkbox" name="conditions" value="Heart condition"><span>Heart condition</span></label>
-            <label><input type="checkbox" name="conditions" value="High blood pressure"><span>High blood pressure</span></label>
-            <label><input type="checkbox" name="conditions" value="Diabetes"><span>Diabetes</span></label>
-            <label><input type="checkbox" name="conditions" value="Asthma"><span>Asthma</span></label>
-            <label><input type="checkbox" name="conditions" value="Bleeding disorder"><span>Bleeding disorder</span></label>
-            <label><input type="checkbox" name="conditions" value="Seizures"><span>Seizures</span></label>
-            <label><input type="checkbox" name="conditions" value="Pregnant"><span>Pregnant</span></label>
-            <label><input type="checkbox" name="conditions" value="None reported"><span>None reported</span></label>
-          </div>
-          <label>Other conditions or details<textarea name="medicalDetails" rows="2" placeholder="Optional"></textarea></label>
-          <label>Allergies<textarea name="allergies" rows="2" placeholder="Type “none” if none"></textarea></label>
-          <label>Current medications<textarea name="medications" rows="2" placeholder="Name and dose, or “none”"></textarea></label>
-        </fieldset>
-
-        <fieldset class="card form-section">
-          <legend>Dental history</legend>
-          <div class="grid two"><label>Last dental visit<select name="lastVisit"><option>Within 6 months</option><option>6–12 months ago</option><option>1–2 years ago</option><option>More than 2 years ago</option><option>First visit</option></select></label><label>Cleaning frequency<select name="cleaningFrequency"><option>Every 6 months</option><option>Once a year</option><option>Only when needed</option><option>Not sure</option></select></label></div>
-          <span class="field-label">Current concerns</span>
-          <div class="check-grid"><label><input type="checkbox" name="concerns" value="Pain"><span>Pain</span></label><label><input type="checkbox" name="concerns" value="Sensitivity"><span>Sensitivity</span></label><label><input type="checkbox" name="concerns" value="Broken tooth"><span>Broken tooth</span></label><label><input type="checkbox" name="concerns" value="Bleeding gums"><span>Bleeding gums</span></label><label><input type="checkbox" name="concerns" value="Cosmetic"><span>Cosmetic</span></label><label><input type="checkbox" name="concerns" value="Routine visit"><span>Routine visit</span></label></div>
-          <label>Tell us more<textarea name="concernDetails" rows="3" placeholder="Optional"></textarea></label>
-          <label>Dental anxiety<select name="anxiety"><option>None</option><option>Mild</option><option>Moderate</option><option>High — please discuss with me</option></select></label>
-        </fieldset>
-
-        <fieldset class="card form-section">
-          <legend>Consent & signature</legend>
-          <p class="hint">Demo acknowledgments only. A production office must supply its reviewed, versioned consent language.</p>
-          <label class="ack"><input type="checkbox" name="accuracyConsent" required><span>I confirm the information I provided is accurate to the best of my knowledge.</span></label>
-          <label class="ack"><input type="checkbox" name="treatmentConsent" required><span>I acknowledge this demo consent placeholder and understand it is not a real treatment authorization.</span></label>
-          <span class="field-label">Draw your signature with a finger or pointer</span>
-          <div class="signature-wrap"><canvas id="signaturePad" height="150" aria-label="Signature drawing area"></canvas></div>
-          <button id="clearSignature" class="button text" type="button">Clear signature</button>
-          <label>Typed name<input name="signatureName" required></label>
-        </fieldset>
-
-        <div class="card actions">
-          <label class="save-choice"><input id="saveProfileChoice" type="checkbox"> Save profile on this device for faster future intake</label>
-          <p class="hint">Local storage is optional and remains in this browser. Anyone with access to this device/browser profile may be able to view it.</p>
-          <button class="button primary wide" type="submit">Generate office packet</button>
-          <button id="clearProfileBtn" class="button secondary wide" type="button">Clear saved profile</button>
-          <button id="deleteSessionBtn" class="button danger wide" type="button">Delete session data</button>
-        </div>
-      </form>
-    </section>
-
-    <section id="packet" class="screen" aria-labelledby="packet-title">
-      <div class="no-print packet-actions"><button id="backBtn" class="button secondary" type="button">Edit answers</button><button id="printBtn" class="button primary" type="button">Print / Save PDF</button><button id="shareBtn" class="button secondary" type="button">Share with office</button><button id="finishBtn" class="button danger" type="button">Delete session data</button></div>
-      <div class="no-print privacy-note"><strong>Sharing demo:</strong> the button opens a blank mail draft with no health details in the subject or URL. Attach the PDF you save above only if the office provides an approved secure process. Production should use secure delivery or EHR integration—not ordinary email.</div>
-      <article id="packetContent" class="packet card"></article>
-    </section>
-  </main>
-  <footer class="no-print">Prototype only · No server storage · Not a claim of HIPAA compliance</footer>
-  <div id="toast" role="status" aria-live="polite"></div>
-  <script src="script.js"></script>
-</body>
-</html>
+<header class="topbar"><button id="homeBtn" class="brand" type="button" aria-label="Return home"><span class="brand-icon">✦</span><span><strong>Joseph LaValley, DDS</strong><small>Patient intake</small></span></button><span class="secure-note">Device-only demo</span></header>
+<main>
+  <section id="home" class="screen active"><div class="hero"><div class="hero-mark">JL</div><p class="kicker">WELCOME TO OUR PRACTICE</p><h1>Thoughtful dentistry,<br><em>made simpler.</em></h1><p class="intro">Complete your paperwork one easy question at a time. Your progress stays on this device.</p><div class="entry-actions"><button id="newBtn" class="button primary">New Patient</button><button id="savedBtn" class="button secondary">Saved Patient</button></div><p class="alumni"><span>OU</span> Proud University of Oklahoma alumnus</p><div class="notice"><strong>Prototype only.</strong> Do not enter real patient information. This public demo does not send or store information on a server.</div></div></section>
+  <section id="wizard" class="screen"><div class="wizard-head"><div><span id="stepLabel">Question 1</span><strong id="stepTitle">Let’s get started</strong></div><button id="saveBtn" class="quiet" type="button">Save on this device</button></div><div class="progress"><i id="progressBar"></i></div>
+    <form id="intakeForm" novalidate>
+      <section class="step" data-title="Your name"><label>What is your legal name? <b>Required</b></label><div class="two"><input name="firstName" autocomplete="given-name" placeholder="First name" required data-capitalize><input name="lastName" autocomplete="family-name" placeholder="Last name" required data-capitalize></div></section>
+      <section class="step" data-title="Date of birth"><label for="dob">What is your date of birth? <b>Required</b></label><input id="dob" name="dob" type="date" autocomplete="bday" required><p class="help">Use the year selector to choose any date within the last 120 years.</p></section>
+      <section class="step" data-title="About you"><label for="pronouns">What are your pronouns? <span>Optional</span></label><select id="pronouns" name="pronouns"><option value="">Prefer not to answer</option><option>She/her</option><option>He/him</option><option>They/them</option><option>Other</option></select></section>
+      <section class="step" data-title="Contact information"><label>How may we contact you? <b>Required</b></label><input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Mobile phone" required><input name="email" type="email" inputmode="email" autocomplete="email" placeholder="Patient email" required></section>
+      <section class="step" data-title="Home address"><label>What is your home address? <b>Required</b></label><input name="address" autocomplete="street-address" placeholder="Start typing your street address" required data-capitalize><div class="address-grid"><input name="city" autocomplete="address-level2" placeholder="City" required data-capitalize><input name="state" autocomplete="address-level1" placeholder="State" maxlength="2" required data-upper><input name="zip" autocomplete="postal-code" inputmode="numeric" placeholder="ZIP" required></div><p class="help">Your browser may suggest a saved address. Live address search requires a vetted production provider.</p></section>
+      <section class="step" data-title="Emergency contact"><label>Who should we contact in an emergency? <b>Required</b></label><input name="emergencyName" placeholder="Full name" required data-capitalize><input name="emergencyRelation" placeholder="Relationship" required data-capitalize><input name="emergencyPhone" type="tel" inputmode="tel" placeholder="Phone number" required></section>
+      <section class="step" data-title="Dental insurance"><label for="insured">Will you be using dental insurance? <b>Required</b></label><select id="insured" name="insured" required><option value="">Choose one</option><option>Yes</option><option>No</option></select><div id="insuranceFields" hidden><input name="insurer" placeholder="Insurance company" data-capitalize><input name="memberId" placeholder="Member ID"><input name="groupNumber" placeholder="Group number"><input name="subscriber" placeholder="Subscriber name" data-capitalize></div></section>
+      <section class="step" data-title="Medical conditions"><label>Has a doctor diagnosed you with any of these? <span>Select all that apply</span></label><div class="choices" id="conditions"></div><textarea name="otherConditions" placeholder="Other conditions or important details (optional)" data-capitalize></textarea></section>
+      <section class="step" data-title="Allergies"><label for="allergies">List medication, latex, food, or other allergies. <b>Required</b></label><textarea id="allergies" name="allergies" required placeholder="Type None if you have no known allergies" data-capitalize></textarea></section>
+      <section class="step" data-title="Medications"><label for="medications">List medications, vitamins, and supplements. <b>Required</b></label><textarea id="medications" name="medications" required placeholder="Include name and dose. Type None if applicable" data-capitalize></textarea></section>
+      <section class="step" data-title="Medical care"><label>Medical care information <span>Optional where unknown</span></label><input name="physician" placeholder="Primary physician" data-capitalize><input name="physicianPhone" type="tel" placeholder="Physician phone"><textarea name="surgeries" placeholder="Past surgeries or hospitalizations (optional)" data-capitalize></textarea></section>
+      <section class="step" data-title="Health screening"><label>Please answer each health question. <b>Required</b></label><div class="yesno"><label>Pregnant or possibly pregnant?<select name="pregnant" required><option value="">Choose</option><option>Yes</option><option>No</option><option>Not applicable</option></select></label><label>Tobacco or nicotine use?<select name="tobacco" required><option value="">Choose</option><option>Current</option><option>Former</option><option>Never</option></select></label><label>Do you require antibiotic premedication?<select name="premed" required><option value="">Choose</option><option>Yes</option><option>No</option><option>Unsure</option></select></label></div></section>
+      <section class="step" data-title="Dental history"><label>Please tell us about your dental care. <b>Required</b></label><input name="lastDentalVisit" type="date" required><select name="dentalAnxiety" required><option value="">Dental anxiety level</option><option>None</option><option>Mild</option><option>Moderate</option><option>Severe</option></select><textarea name="dentalConcerns" required placeholder="What brings you in, and what concerns would you like addressed?" data-capitalize></textarea></section>
+      <section class="step" data-title="Symptoms"><label>Are you currently experiencing any of these? <span>Select all that apply</span></label><div class="choices" id="symptoms"></div><textarea name="symptomDetails" placeholder="Additional details (optional)" data-capitalize></textarea></section>
+      <section class="step" data-title="Consent"><label>Review and acknowledge. <b>Required</b></label><label class="check"><input type="checkbox" name="accuracyConsent" required><span>I confirm that my answers are accurate and complete to the best of my knowledge.</span></label><label class="check"><input type="checkbox" name="careConsent" required><span>I understand this prototype consent is a placeholder and the practice’s reviewed consent forms would apply.</span></label><p class="help">Production consent language must be reviewed and versioned by the dental office and counsel.</p></section>
+      <section class="step" data-title="Your signature"><label for="signatureName">Type your full legal name to sign. <b>Required</b></label><input id="signatureName" name="signatureName" required placeholder="Full legal name" data-capitalize><div id="signaturePreview" class="signature-preview">Your Signature</div><label for="signatureDate">Date signed <b>Required</b></label><input id="signatureDate" name="signatureDate" type="date" required></section>
+      <section class="step" data-title="Final review"><div class="review-icon">✓</div><h2>Ready to create your packet?</h2><p>Review your answers with Back, or generate a printable office packet.</p><label class="save-choice"><input id="saveProfileCheck" type="checkbox"><span>Save reusable information on this device</span></label><div class="privacy-final">The public demo will not email medical information. Production delivery requires an approved secure system.</div></section>
+      <p id="error" class="error" role="alert"></p><div class="nav"><button id="backBtn" class="button secondary" type="button">Back</button><button id="nextBtn" class="button primary" type="button">Continue</button><button id="generateBtn" class="button primary" type="submit">Generate Office Packet</button></div>
+    </form>
+  </section>
+  <section id="thanks" class="screen"><div class="hero thankyou"><div class="success">✓</div><p class="kicker">ALL FINISHED</p><h1>Thank you.</h1><p class="intro">Your packet was created on this device. The office will call you back shortly.</p><button id="viewPacketBtn" class="button primary">View &amp; Print Packet</button><button id="deleteBtn" class="button secondary">Delete Session Data</button><div class="notice">Demo note: nothing was emailed. A production version would deliver the packet through an approved secure workflow.</div></div></section>
+  <section id="packet" class="screen"><div class="packet-actions"><button id="packetBack" class="button secondary">Back</button><button id="printBtn" class="button primary">Print / Save PDF</button></div><article id="packetBody"></article></section>
+</main><div id="toast" role="status"></div></body></html>
