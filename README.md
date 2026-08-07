@@ -12,4 +12,11 @@ Real deployment requires qualified privacy/security and legal review plus an app
 
 Set `CONFIG.officeEmail` near the top of `script.js` after the practice chooses an approved secure delivery workflow. The current placeholder is intentionally printed visibly so it cannot be mistaken for a working delivery configuration.
 
-Live address lookup is intentionally not included in the public demo because it would disclose address searches to a third party. Standard browser address autofill is enabled. A production address provider should be selected through the practice's privacy/security review.
+Standard browser address autofill is enabled. The prototype also demonstrates explicit address matching through the public U.S. Census geocoder; a production provider should be selected through the practice's privacy/security review.
+
+## Prototype integrations
+
+- Address matching uses the public U.S. Census single-address geocoder and always asks the patient to confirm the result.
+- Medication autocomplete uses active RxNorm approximate matches from the U.S. National Library of Medicine.
+- Insurance-card front/back images are captured locally and included in the locally generated packet. The prototype does not claim that an image verifies active coverage.
+- Replace these public/demo integrations with practice-approved services before any real deployment.
