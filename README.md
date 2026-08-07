@@ -1,6 +1,6 @@
 # Dr. Joseph LaValley Dental Intake — UX Prototype
 
-Mobile-first, one-question-at-a-time static prototype built with HTML, CSS, and vanilla JavaScript.
+Mobile-first, one-question-at-a-time static prototype built with HTML, CSS, and vanilla JavaScript. The 2077 interface includes an opening language gateway, accessibility controls, progress and time estimates, review/edit cards, clinical-alert highlighting, staff demo data, inactivity protection, and a print-ready office packet.
 
 ## Important
 
@@ -10,7 +10,7 @@ Real deployment requires qualified privacy/security and legal review plus an app
 
 ## Configure
 
-Set `CONFIG.officeEmail` near the top of `script.js` after the practice chooses an approved secure delivery workflow. The current placeholder is intentionally printed visibly so it cannot be mistaken for a working delivery configuration.
+Set `CONFIG.officeAddress`, `CONFIG.officePhone`, and `CONFIG.officeEmail` near the top of `script.js` after the practice chooses an approved secure delivery workflow. The current placeholders are intentionally printed visibly so they cannot be mistaken for working delivery configuration.
 
 Standard browser address autofill is enabled. The prototype also demonstrates explicit address matching through the public U.S. Census geocoder; a production provider should be selected through the practice's privacy/security review.
 
@@ -19,4 +19,6 @@ Standard browser address autofill is enabled. The prototype also demonstrates ex
 - Address matching uses the public U.S. Census single-address geocoder and always asks the patient to confirm the result.
 - Medication autocomplete uses active RxNorm approximate matches from the U.S. National Library of Medicine.
 - Insurance-card front/back images are captured locally and included in the locally generated packet. The prototype does not claim that an image verifies active coverage.
+- The language gateway uses Google Translate when it is available online. Machine-translated medical wording may be incorrect and must be reviewed before clinical use; English remains the prototype's source language.
+- Staff demo mode fills only obvious fictional information. The shared-device inactivity timer warns after nine minutes and clears an unfinished draft after ten minutes.
 - Replace these public/demo integrations with practice-approved services before any real deployment.
