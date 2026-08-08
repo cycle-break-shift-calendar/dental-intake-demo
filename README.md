@@ -10,7 +10,7 @@ Real deployment requires qualified privacy/security and legal review plus an app
 
 ## Fake email pilot
 
-This build sends a fixed fictional `Demo Patient` sample to `zanealexander88@gmail.com` through Web3Forms after the final Generate action. It never places answers typed into the form, insurance images, or generated packet contents into that request. This relay is for fake-data workflow testing only and must be removed from any production build.
+This build sends a fixed fictional `Demo Patient` sample to `zanealexander88@gmail.com` through Web3Forms after the final Generate action. It includes a direct link to `sample-office-packet.pdf`, a public three-page printable packet containing only fixed fictional information. It never places answers typed into the form, insurance images, or generated packet contents into that request. This relay is for fake-data workflow testing only and must be removed from any production build.
 
 ## Configure
 
